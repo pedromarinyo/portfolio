@@ -3,7 +3,7 @@
 // ______________________________________
 var aboutContent = new Object();
 
-aboutContent["about"] = "<span id='hi'>Hello.</span><br><br>I’m a <b>PhD candidate</b> in Digital Media at the Georgia Institute of Technology and a <b>teacher</b> at Idyllwild Arts Academy.<br><br> I research and teach approaches to interactive storytelling.";
+aboutContent["about"] = "<span id='hi'>Hello.</span><br><br>I’m a <b>PhD student</b> in Digital Media at the Georgia Institute of Technology and a <b>teacher</b> at Idyllwild Arts Academy.<br><br> I research and teach approaches to interactive storytelling.";
 
 // Project Details Info
 // ______________________________________
