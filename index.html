@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="initial-scale=1, user-scalable=no">
+    <link type="text/css" rel="stylesheet" href="styles/clear.css">
+    <link type="text/css" rel="stylesheet" href="styles/style.css">
+
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/parallax.min.js"></script>
+	<script type="text/javascript" src="scripts/header.js"></script>
+
+	<title>Pedro Silva | Portfolio</title> 
+
+</head>
+
+<body>
+<!-- Header, Navigation -->
+<!-- ---------------------------------------- -->
+<header class="shadowed">
+	<div class="container headerHeight">
+
+		<!-- Logo -->
+		<img id="logo" class="headerHeight home" src="assets/logo_small.png"/>
+
+
+		<!-- Navigation -->
+		<nav><a href="./cv.pdf">CV</a></nav>
+		<nav id="projects_link">Projects</nav>
+		<nav id="education_link">Education</nav>
+		<nav id="workExperience_link">Work</nav>
+		<nav id="contact_link">Contact</nav>
+		
+	</div>
+</header>
+
+<!-- Project details -->
+<img id="close" class="hide shadowed" src="assets/close.png" width="25" height="25">
+<div id="projectDetails" class="hide shadowedLarge threeColumn">		
+	
+		<div id="projectDetailsText"></div>
+		<br>
+		<div id="projectDetailsImg" class="shadowed"></div>
+	
+</div>
+
+<!-- Background img-->
+<div id="backgroundImg" class="bg-holder" data-width="1024" data-height="768"></div>
+
+
+
+<!-- Main content -->
+<section id="main" class="shadowed">
+	<div class="container">
+
+		<!-- About -->
+		<!-- ---------------------------------------- -->
+		<div id="about" class="twoColumn"></div>		
+
+		<!-- Projects -->
+		<!-- ---------------------------------------- -->
+		<article id="projects">
+			
+			<h1 class="floatRight unselectable">A Few Projects</h1><br/>			
+			<h2 class="floatRight unselectable">Experimental TV</h2>
+			<br/>
+
+				<div id="interactiveTelevision" class="collapse">
+				
+				<!-- Game of Thrones Companion -->
+				<div id="gameOfThrones" class="card threeColumn floatRight">
+					<h3>Game of Thrones Companion</h3>
+					<p>2013 | web app, mobile</p>
+					<div id="gameOfThrones_pic" class="thumbnail card"></div>
+					<p>A second screen app that orients viewers to the world of Westeros. </p>
+				</div>				
+
+				<!-- CounterPoint -->
+				<div id="counterPoint" class="card threeColumn floatRight">
+					<h3>CounterPoint</h3>
+					<p>2014 | web app, mobile</p>
+					<div id="counterPoint_pic" class="thumbnail card"></div>
+					<p>Map theories and predictions about your favorite shows; Capture clips, images and quotes to support your claims; Refute or support friends’ arguments. </p>
+				</div>
+		
+				<!-- Stories in Motion -->
+				<div id="storiesInMotion" class="card threeColumn floatRight">
+					<h3>Stories in Motion</h3>
+					<p>2014 | web app, mobile</p>
+					<div id="storiesInMotion_pic" class="thumbnail card"></div>
+					<p>Control which character's POV to follow; Chart, annotate and share unique paths through your favorite shows. </p>
+				</div>
+
+
+				<!-- ClipShare -->
+				<div id="clipShare" class="card threeColumn floatRight">
+					<h3>ClipShare</h3>
+					<p>2015 | comcast x1 prototype, voice</p>
+					<div id="clipShare_pic" class="thumbnail card"></div>
+					<p>A voice-controlled app for Comcast's X1 platform that allows viewers to extract, annotate and share clips.</p>
+				</div>
+
+				</div>
+
+			<br/>
+		
+			<h2 class="floatRight unselectable">Games for Education</h2>
+			
+			<br/>
+
+				<div id="education_projects" class="collapse">
+
+				<!-- Catasrophe -->
+		        <div id="catastrophe" class="card threeColumn floatRight">
+		          <h3>Catastrophe</h3>
+		          <p>2019 | unity 3d</p>
+		          <div id="catastrophe_pic" class="thumbnail card"></div>
+		          <p>Collabrative project for Game Design course (Spring 2019)</p>
+		        </div>
+
+		        <!-- Somebody Else's Eden -->
+		        <div id="eden" class="card threeColumn floatRight">
+		          <h3>Somebody Else's Eden</h3>
+		          <p>2020 | unity 3d</p>
+		          <div id="eden_pic" class="thumbnail card"></div>
+		          <p>Collabrative project for Programming for 2D Games course (Spring 2020) </p>
+		        </div>
+
+        		<!-- Geografia -->
+				<div id="geografia" class="card threeColumn floatRight">
+					<h3>Geografia</h3>
+					<p>2012 | web app, mobile</p>
+					<div id="geografia_pic" class="thumbnail card"></div>
+					<p>A platform for community-authored virtual heritage environments. </p>
+				</div>
+
+				<!-- The Mysterious Affair of Steven Tibbs -->
+				<div id="tibbs" class="card threeColumn floatRight">
+					<h3>Steven Tibbs</h3>
+					<p>2014 | web app, ARG, mobile</p>
+					<div id="tibbs_pic" class="thumbnail card"></div>
+					<p>Solve a procedurally generated whodunnit by gathering location-based clues across GaTech’s campus. </p>
+				</div>
+
+				<!-- MaDOs -->
+				<div id="mados" class="card threeColumn floatRight">
+					<h3>MaDOs</h3>
+					<p>2013 | web app</p>
+					<div id="mados_pic" class="thumbnail card"></div>
+					<p>Role-playing contemporary debates via chat for the high school classroom. </p>
+				</div>
+
+				</div>
+
+			<br/>
+			
+			<h2 class="floatRight unselectable">Digital Art & Misc.</h2>
+			<br/>				
+
+			<div id="digitalArt" class="collapse">
+
+
+				<!-- Heartly -->
+				<div id="heartly" class="card threeColumn floatRight">
+					<h3>Heartly</h3>
+					<p>2015 | java, arduino</p>
+					<div id="heartly_pic" class="thumbnail card"></div>
+					<p>A runner/platformer controlled by heartrate.</p>
+				</div>
+
+				<!-- Civilization V -->
+				<div id="civ" class="card threeColumn floatRight">
+					<h3>DaVinci Plays Civ V</h3>
+					<p>2015 | adobe premiere, logic pro</p>
+					<div id="civ_pic" class="thumbnail card"></div>
+					<p>An animated short.</p>
+				</div>
+
+				<!-- Music -->
+				<div id="flatlands" class="card threeColumn floatRight">
+					<h3>Flatlands Soundtrack</h3>
+					<p>2014 | music composition, logic pro</p>
+					<div id="flatlands_pic" class="thumbnail card"></div>
+					<p>Soundtrack for a platformer inspired by Edwin Abbott's Flatland.</p>
+				</div>	
+
+				<!-- Expired -->
+				<div id="expired" class="card threeColumn floatRight">
+					<h3>Expired</h3>
+					<p>2010 | installation</p>
+					<div id="expired_pic" class="thumbnail card"></div>
+					<p>An interactive sculpture cobbled from obsolete, recycled technology. </p>
+				</div>	
+
+			</div>
+
+		</article>
+	</div>
+	</section>
+
+	<section class="whiteBackground shadowed">
+	<div class="container">
+
+		<!-- Education -->
+		<!-- ---------------------------------------- -->
+		<article id="education">
+			
+			<h1 class="floatLeft borderBottom">Education</h1><br/>	
+
+			<!-- PhD -->
+			<div class="floatLeft twoColumn card">
+				<h2>PhD, Digital Media</h2>
+				<p>					
+					<i>Georgia Institute of Technology</i><br>
+					Atlanta, GA<br><br>
+					2013 - 2016; 2020 - Present
+				</p>
+			</div>
+
+			<!-- MFA -->
+			<div class="floatLeft twoColumn card">
+				<h2>MFA, Emerging Media </h2>
+				<p>			
+					<i>University of Central Florida</i><br>
+					Orlando, FL<br><br>
+					2010 - 2013
+				</p>
+			</div>
+
+			<!-- BA -->
+			<div class="floatLeft twoColumn card">
+				<h2>BA, Creative Writing</h2>
+				<p>					
+					<i>University of Central Florida</i><br/>
+					Orlando, FL<br><br>
+					2006 - 2010
+				</p>
+			</div>
+
+		</article>
+	</div>
+	</section>
+
+	<section class="shadowed greyBackground">
+	<div class="container">
+
+		<!-- Work Experience -->
+		<!-- ---------------------------------------- -->
+		<article id="workExperience">
+			
+			<h1 class="floatLeft borderBottom">Work Experience</h1><br/>
+
+				<!-- Idyllwild Arts -->
+		        <div class="floatLeft twoColumn">
+		          <h2>Teacher and Dorm Parent</h2>
+		          <p>Game Design, STEAM, Algebra I and II, Geometry<br/>
+		          	<i>Idyllwild Arts Academy, Idyllwild, CA</i><br><br>
+		      		2018 - Present </p>
+		        </div>
+
+				<!-- eTV Manager -->
+				<div class="floatLeft twoColumn">
+					<h2>Lab Manager</h2>
+					<p>
+						School of Literature, Media and Communication<br>
+						<i>Georgia Institute of Technology, Atlanta, GA</i><br><br>
+						2014 - 2016; 2020 - Present
+					</p>
+				</div>				
+
+				<!-- GRA -->
+				<div class="floatLeft twoColumn">
+					<h2>Graduate Research Assistant</h2>
+					<p>
+						School of Literature, Media and Communication<br>
+						<i>Georgia Institute of Technology, Atlanta, GA</i><br><br>
+						2013 - 2014
+					</p>
+				</div>
+
+				<!-- Comcast -->
+				<div class="floatLeft twoColumn">
+					<h2>Research and Design Intern </h2>
+					<p>
+						UX Design<br>
+          				<i>Comcast Labs, Washington DC</i><br><br>
+          				Summer, 2015
+          			</p>
+				</div>
+
+				<!-- GTA -->
+				<div class="floatLeft twoColumn">
+					<h2>Graduate Teaching Associate</h2>
+					<p>
+						School of Visual Arts and Design<br>
+						<i>University of Central Florida, Orlando, FL</i><br><br>
+						2012 - 2013
+					</p>
+				</div>
+
+				<!-- GRA -->
+				<div class="floatLeft twoColumn">
+					<h2>Graduate Research Assistant</h2>
+					<p>School of Visual Arts and Design<br>
+					<i>University of Central Florida, Orlando, FL</i><br><br>
+					2010 - 2012</p>
+				</div>
+
+				<!-- Writing Center Consultant -->
+				<div class="floatLeft twoColumn">
+					<h2>University Writing Consultant</h2> 
+					<p>University Writing Center<br>
+					<i>University of Central Florida, Orlando, FL</i><br><br>
+					2009 - 2010</p>
+				</div>
+
+		</article>
+	</div>
+	</section>
+
+	<section class="shadowed blackBackground">
+	<div class="container">
+
+		<!-- Footer, Contact Information -->
+		<!-- ---------------------------------------- -->
+		<footer>
+
+			<!-- Contact Info -->
+			<article id="contact" style="text-align: center; width: 100%; padding-top: 20px;">	
+							
+					<div id="profilePicture" class="shadowed">
+						<img src="assets/profilePicture.png" />
+					</div>				
+				
+					<h4 style="text-align: center;">Designed by Pedro Silva<br/>
+					pedrosilva0219 [at] gmail [dot] com</h4> 				
+			</article>			
+			
+		</footer>
+
+	</div>
+</section>
+
+</body>
+</html>

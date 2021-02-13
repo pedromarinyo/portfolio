@@ -1,0 +1,684 @@
+﻿<html>
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width,height=device-height">
+    <script type="text/javascript" src="./scripts/kinetic-v4.7.0.min.js"></script>
+    <script type="text/javascript" src="./scripts/jquery.min.js"></script>
+    
+    <title>Nobre Light Industries</title>
+    
+    <style type="text/css">
+
+        @font-face {
+        font-family: title;
+        src: url('./assets/Airplane.ttf')
+        }
+
+        body {
+            margin:0px;
+            -webkit-transform: translate3d(0, 0, 0);
+            text-align:center;
+            overflow:hidden;
+	        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        #wrapper {
+            position:relative;
+            padding:0px;
+            width: 320px;
+            height: 480px;
+            margin: 0px auto;       
+        }
+
+        canvas, #stage {
+            position:absolute;
+            left:0px;
+            top:0px; 
+            background-color:#0F2E4C;
+        }
+
+        #login_button {
+            position: absolute;
+            left:125px;
+            top: 270px;
+        }
+    </style>
+    <script type="text/javascript">
+        
+        var textTop, textMiddle, textBottom;
+        var background_layer, background, background_ornament, background_loading;
+        var anim, angularSpeed;
+        var audioPlayer;
+        var userInfo;
+        var facebookIsLive = false; //true equals live data, false equals dummy data in getMoviesAndProfile()
+        var background_loading_continue = false;        
+        /*FB Array includes:
+            location, 
+            first like, 
+            age, 
+            gender, 
+            education, 
+            first friend, 
+            interested in
+        */
+        var fbInfoArray = new Array();
+        var movieArray = new Array();
+     
+        function loadSound() {
+            audioPlayer.load();
+            console.log("sound loaded");            
+        }
+
+        function init() {
+            //initialize stage         
+            audioPlayer = document.getElementById("audioPlayer");
+            loadSound();
+            stage = new Kinetic.Stage({
+                container: "stage",
+                width: 320,
+                height: 480,
+                fill: "#fff"
+            });
+
+            background = new Kinetic.Rect({
+                x: 0,
+                y: 0,
+                width: 320,
+                height: 480,
+                fillRadialGradientStartPoint: 160,
+                fillRadialGradientStartRadius: 500,
+                fillRadialGradientEndPoint: 160,
+                fillRadialGradientEndRadius: 70,
+                fillRadialGradientColorStops: [0, '#000C1F', 1, '#0F2E4C'],
+            });
+
+            background_ornament = new Kinetic.Circle({
+                x: 350,
+                y: 280,
+                radius:30,
+                fill: 'white'
+            });
+
+            textTop = new Kinetic.Text({
+                x: 0,
+                y: 0,
+                text: '',
+                fontSize: 45,
+                fontFamily: 'title',
+                fill: '#FF6600',
+                width: 320,
+                padding: 20,
+                align: 'left',
+                opacity: 0                
+            });
+            textMiddle = new Kinetic.Text({
+                x: 0,
+                y: 200,
+                text: '',
+                fontSize: 24,
+                fontFamily: 'Calibri',
+                fill: '#fff',
+                width: 320,
+                padding: 20,
+                align: 'left',
+                opacity: 0
+            });
+            textBottom = new Kinetic.Text({
+                x: 0,
+                y: 300,
+                text: '',
+                fontSize: 20,
+                fontFamily: 'Calibri',
+                fill: '#fff',
+                width: 320,
+                padding: 20,
+                align: 'left',
+                opacity: 0
+            });
+
+            layer = new Kinetic.Layer();
+            background_layer = new Kinetic.Layer();
+
+            background_layer.add(background);
+            background_layer.add(background_ornament);
+
+            layer.add(textTop);
+            layer.add(textMiddle);
+            layer.add(textBottom);
+
+            stage.add(background_layer);
+            stage.add(layer);
+
+            intro();
+        }
+
+        function intro() {
+            //intro screen
+            
+            background_ornament.tween = new Kinetic.Tween({
+                node: background_ornament,
+                x: 160,
+                easing: Kinetic.Easings.EaseInOut,
+                duration: 1
+            }); setTimeout(function () { background_ornament.tween.play(); }, 1000);
+            background_ornament.on('mousedown touchstart', function () { //on touch/click move to next stage
+               about();
+            });
+
+
+            textTop.setText("suggestr");
+            textTop.setFontFamily("title");
+            textTop.setY(-50);
+            textTop.tween = new Kinetic.Tween({
+                node: textTop,
+                y: 100,
+                opacity: 1,
+                easing: Kinetic.Easings.EaseInOut,
+                duration: 1
+            }); textTop.tween.play();
+
+            textMiddle.setText("tonight's perfect movie is just a tap away");
+            textMiddle.tween = new Kinetic.Tween({
+                node: textMiddle,
+                x: 0,
+                y: 150,
+                opacity: 1,
+                easing: Kinetic.Easings.EaseInOut,
+                duration: 1
+            }); textMiddle.tween.play();
+            
+            textBottom.setText("suggestr recommends movies based on your Facebook profile. \n\nchoosing is hard. let us help.");
+            textBottom.setFontSize("16");
+            textBottom.tween = new Kinetic.Tween({
+                node: textBottom,
+                x: 20,
+                y: 320,
+                opacity: .8,
+                easing: Kinetic.Easings.EaseInOut,
+                duration: 1
+            }); textBottom.tween.play();
+        }
+        function about() {
+            audioPlayer.play();
+            
+            $("#login_button").hide();
+            //Clear layer
+            resetLayer();
+            background_ornament.tween = new Kinetic.Tween({
+                node: background_ornament,
+                y: 50,
+                radius: 60,
+                duration: 1,
+                easing: Kinetic.Easings.EaseInOut,
+            }); 
+
+            //Draw
+            setTimeout(function () {
+                textTop.setText("nobre light industries");
+                textMiddle.setText("thinking, simplified");
+                textMiddle.setY(200);
+                textBottom.setText("");
+                background_ornament.tween.play();
+                showText();
+            }, 2000);
+
+            setTimeout(function () {
+                resetLayer();
+                background_ornament.tween = new Kinetic.Tween({
+                    node: background_ornament,
+                    y: 240,
+                    radius: 60,
+                    duration: 1,
+                    easing: Kinetic.Easings.EaseInOut,
+                }); background_ornament.tween.play();
+            }, 6000);
+
+            setTimeout( function() { 
+                background_loading = new Kinetic.Wedge({
+                    x: 160,
+                    y: 240,
+                    radius: 65,
+                    angleDeg: 60,
+                    fill: 'grey',
+                    strokeWidth: 0,
+                    rotationDeg: -120
+                }); background_layer.add(background_loading);
+
+                angularSpeed = Math.PI;
+                anim = new Kinetic.Animation(function (frame) {
+                    var time = frame.time;
+                    var angleDiff = frame.timeDiff * angularSpeed / 1000;
+                    background_loading.rotate(angleDiff);
+
+                    // update stuff
+                }, background_layer);
+
+                anim.start();
+            }, 7000);
+
+            setTimeout(function () {
+                getMoviesAndProfile();
+            }, 40000); //adjust according to recorded track
+        }
+        function getMoviesAndProfile() {
+            
+            //getting facebook info
+            if(facebookIsLive) {
+                
+                FB.api('/me?fields=statuses.limit(5),friends.limit(5).fields(about,picture.width(100),name),movies.limit(5).fields(picture.width(100), name),music.limit(5).fields(picture.width(100),name),birthday,gender,relationship_status,name,political,religion,education,likes.limit(5),hometown', function (response) {
+                    //console.log(response);
+                    fbInfoArray = new Array(
+                         "were born in " + response.hometown.name,                     
+                         "are " + response.gender
+                    );
+                    
+                    fbInfoArray[2] = (response.relationship_status != null) ? "are " + response.relationship_status : "are friends with " + response.friends.data[1].name;
+                    fbInfoArray[3] = (response.education != null) ? "attended " + response.education[0].school.name : "are friends with " + response.friends.data[2].name;
+                    fbInfoArray[4] = (response.birthday != null) ? "were born on " + response.birthday : "are friends with " + response.friends.data[4].name;
+                    fbInfoArray[5] = (response.interested_in != null) ? "were born on " + response.birthday : "are friends with " + response.friends.data[3].name;
+                    fbInfoArray[6] = "are friends with " + response.friends.data[0].name;
+                    userInfo = response;
+                    console.log(fbInfoArray);
+                });
+            
+            } else {
+            
+                fbInfoArray = new Array(
+                     "were born in Orlando, Florida, USA",                     
+                     "are a male"
+                );
+                
+                fbInfoArray[2] = "are friends with Shigero Miyamoto";
+                fbInfoArray[3] = "attended Georgia Institute of Technology"; 
+                fbInfoArray[4] = "were born on May 20th";
+                fbInfoArray[5] = "are friends with Haruki Murakami";
+                fbInfoArray[6] = "are friends with Ursula Le Guin";
+                
+                console.log(fbInfoArray);
+            }
+
+            movieArray[0] = "./assets/0.jpg";
+            movieArray[1] = "./assets/1.jpg";
+            movieArray[2] = "./assets/2.jpg";
+            movieArray[3] = "./assets/3.jpg";
+            movieArray[4] = "./assets/4.jpg";
+            movieArray[5] = "./assets/5.jpg";
+            movieArray[6] = "./assets/6.jpg";
+          
+            console.log(movieArray);
+            setTimeout(function () { movieNarrow(); }, 1000);
+        }
+        function movieNarrow() {
+            resetLayer(); //1 sec
+
+            background_ornament.tween = new Kinetic.Tween({
+                node: background_ornament,
+                y: 200,
+                radius: 120,
+                duration: 1,
+                easing: Kinetic.Easings.EaseInOut,
+            }); background_ornament.tween.play();
+
+            
+            var movieCover;
+            var tracker = 0;
+            
+            var timer = setInterval(function () { narrowingMovies(); }, 3000);
+            
+            function narrowingMovies() {
+                resetLayer();
+
+                movieCover = new Kinetic.Image({
+                    width: 160,
+                    height: 240,
+                    offsetX: 80,
+                    offsetY: 120,
+                    x: 160,
+                    y: 200,
+                    opacity: 1,
+                    shadowColor: 'black',
+                    shadowBlur: 10,
+                    shadowOffset: 10,
+                    shadowOpacity: 0.5
+                });
+                
+                var imageObj = new Image();
+                imageObj.src = movieArray[tracker];
+                
+                movieCover.setImage(imageObj);
+                layer.add(movieCover);
+                textMiddle.setText("removing bad matches...");
+                textMiddle.setY(0);
+                textTop.setFontFamily("calibri");
+                textTop.setText(fbInfoArray[tracker].toLowerCase());
+                textTop.setY(360);
+                textTop.setX(20);
+                textTop.setFontSize(28);
+                textBottom.setText("because you...");
+                textBottom.setFontSize(18);
+                textBottom.setY(340);
+               
+
+                showText();
+
+                movieCover.tween = new Kinetic.Tween({
+                    node: movieCover,
+                    duration: .5,
+                    opacity: 0,
+                    x: 0,
+                    y: 0,
+                    rotationDeg: 70
+                });
+
+                tracker++;
+                setTimeout(function () { movieCover.tween.play(); }, 2000);
+                if (tracker >= fbInfoArray.length) {
+                    clearInterval(timer);
+                    setTimeout(function () { adjustProfile(); }, 2000); 
+                } 
+            }
+        }
+        function adjustProfile() {
+            resetLayer();
+
+            var imageLeft = new Image();
+            var imageCenter = new Image();
+            var imageRight = new Image();
+
+            var leftImage = new Kinetic.Image({
+                image: imageLeft,                
+                height: 100,
+                offsetX: 50,
+                x: 80,
+                y: 170,
+                shadowColor: 'black',
+                shadowBlur: 10,
+                shadowOffset: 10,
+                shadowOpacity: 0.5
+            }); layer.add(leftImage);
+            var centerImage = new Kinetic.Image({
+                image: imageCenter,
+                
+                height: 100,
+                offsetX: 50,
+                x: 160,
+                y: 170,
+                shadowColor: 'black',
+                shadowBlur: 10,
+                shadowOffset: 10,
+                shadowOpacity: 0.5
+            }); //layer.add(centerImage);
+            var rightImage = new Kinetic.Image({
+                image: imageRight,
+                
+                height: 100,
+                offsetX: 50,
+                x: 240,
+                y: 170,
+                shadowColor: 'black',
+                shadowBlur: 10,
+                shadowOffset: 10,
+                shadowOpacity: 0.5
+            }); layer.add(rightImage);
+            background_ornament.tween = new Kinetic.Tween({
+                node: background_ornament,
+                y: 440,
+                radius: 30,
+                duration: 1,
+                easing: Kinetic.Easings.EaseInOut,
+            }); background_ornament.tween.play();
+
+            background_loading.tween = new Kinetic.Tween({
+                node: background_loading,
+                opacity: 1,
+                y: 440,
+                radius: 35,
+                duration: 1,
+                easing: Kinetic.Easings.EaseInOut,
+            });
+            background_loading.tween.play();
+            background_loading_continue = true;
+            anim.start();
+            
+
+            setTimeout(function () {
+                textTop.setText("it's unlikely that you like both of these items");
+                textTop.setY(10);
+                textTop.setX(0);
+                textMiddle.setText("please select one to remove from your profile");
+                textMiddle.setY(290);
+                textBottom.setText("");
+
+                //console.log(userInfo.movies.data[0].picture.data.url);
+                
+
+                imageLeft.src = "./assets/0_sm.jpg";                
+                imageRight.src = "./assets/1_sm.jpg";;
+
+                
+
+                showText();
+                
+            }, 2000);
+
+            setTimeout(function () { resetLayer(); }, 10000 );
+
+            setTimeout(function () {
+                
+                imageLeft.src = "assets/superman.jpg";
+                imageRight.src = "assets/batman.jpg";
+
+                textTop.setText("several of your friends make no mention of this movie in their profile.");
+                textTop.setY(10);
+                textTop.setX(0);
+                textMiddle.setText("these friendships are highly improbable. un-friending them now...");
+                
+                textBottom.setText("");
+                textBottom.setY(380);
+                showText();
+            }, 11000);
+
+            setTimeout(function () { resetLayer(); }, 20000);
+
+            setTimeout(function () {
+
+                leftImage.remove();
+                rightImage.remove();
+
+                textTop.setText("people who like this movie share a particular political affiliation");
+                textTop.setY(10);
+                textTop.setX(0);
+                textMiddle.setText("adjusting accordingly...");
+                
+                textBottom.setText("Federalist Agitator Party");
+                textBottom.setY(200);
+                showText();
+            }, 21000);
+
+            setTimeout(function () { resetLayer(); }, 30000);
+
+            setTimeout(function () {
+
+                imageCenter.src = "assets/mario.jpg";
+                layer.add(centerImage);
+
+                textTop.setText("adjusting your relationship status to better fit your profile...");
+                textTop.setY(10);
+                textTop.setX(0);
+                textMiddle.setText("data shows that you're attracted to this person, physically and emotionally");
+                
+                textBottom.setText("");
+                textBottom.setY(380);
+                showText();
+            }, 31000);
+
+            setTimeout(function () { resetLayer(); }, 40000);
+
+            setTimeout(function () {
+                centerImage.remove();
+
+                textTop.setText("your latest status update does not meet current standards of quality");
+                textTop.setY(10);
+                textTop.setX(0);
+                textMiddle.setText("sub-standard posts alienate you from your social network. removing now...");
+                
+                textBottom.setText("Just had hushpuppies at Red Lobster. Totally recomended!");
+                textBottom.setY(380);
+                showText();
+            }, 41000);
+
+            setTimeout(function () { resetLayer(); }, 50000);
+
+            setTimeout(function () {
+                //textTop.setFontFamily("title");
+                textTop.setText("retrieving  your recommendation. thank you for your patience!");
+                textTop.setY(320);
+                textTop.setX(0);
+                textMiddle.setText("");
+                
+                textBottom.setText("");
+                textBottom.setY(400);
+                showText();
+
+                background_ornament.tween = new Kinetic.Tween({
+                    node: background_ornament,
+                    y: 200,
+                    radius: 120,
+                    duration: 1,
+                    easing: Kinetic.Easings.EaseInOut,
+                }); background_ornament.tween.play();
+
+                background_loading.tween = new Kinetic.Tween({
+                    node: background_loading,
+                    opacity: 1,
+                    y: 200,
+                    radius: 120,
+                    duration: 1,
+                    easing: Kinetic.Easings.EaseInOut,
+                }); background_loading.tween.play();
+            }, 51000);
+
+        }
+        //FUNCTIONS
+        function resetLayer() {
+            textTop.tween = new Kinetic.Tween({
+                node: textTop,
+                opacity: 0,
+                duration: 1
+            }); textTop.tween.play();
+            textMiddle.tween = new Kinetic.Tween({
+                node: textMiddle,
+                opacity: 0,
+                duration: 1
+            }); textMiddle.tween.play();
+            textBottom.tween = new Kinetic.Tween({
+                node: textBottom,
+                opacity: 0,
+                duration: 1
+            }); textBottom.tween.play();
+
+            if(background_loading_continue == false && background_loading != null) {
+                background_loading.tween = new Kinetic.Tween({
+                    node: background_loading,
+                    opacity: 0,
+                    duration: 1
+                });
+                background_loading.tween.play();
+                anim.stop();
+                //setTimeout(function () { anim.stop();}, 1000);
+            }
+
+
+
+            //setTimeout(function () { layer.removeChildren(); }, 1000);
+        }
+        function showText() {
+            textTop.tween = new Kinetic.Tween({
+                node: textTop,
+                opacity: 1,
+                duration: 1
+            }); textTop.tween.play();
+            textMiddle.tween = new Kinetic.Tween({
+                node: textMiddle,
+                opacity: 1,
+                duration: 1
+            }); textMiddle.tween.play();
+            textBottom.tween = new Kinetic.Tween({
+                node: textBottom,
+                opacity: 1,
+                duration: 1
+            }); textBottom.tween.play();
+        }
+       
+   
+    </script>
+</head>
+
+<body onload="init()">
+
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '231112060385534', // App ID
+                channelUrl: 'http://lmc.gatech.edu/~psilva6/recommend/channel.html', // Channel File
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true  // parse XFBML
+            });
+
+            // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
+            // for any authentication related change, such as login, logout or session refresh. This means that
+            // whenever someone who was previously logged out tries to log in again, the correct case below 
+            // will be handled. 
+            FB.Event.subscribe('auth.authResponseChange', function (response) {
+                // Here we specify what we do with the response anytime this event occurs. 
+                if (response.status === 'connected') {
+                    // The response object is returned with a status field that lets the app know the current
+                    // login status of the person. In this case, we're handling the situation where they 
+                    // have logged in to the app.
+                    about();
+                } else if (response.status === 'not_authorized') {
+                    // In this case, the person is logged into Facebook, but not into the app, so we call
+                    // FB.login() to prompt them to do so. 
+                    // In real-life usage, you wouldn't want to immediately prompt someone to login 
+                    // like this, for two reasons:
+                    // (1) JavaScript created popup windows are blocked by most browsers unless they 
+                    // result from direct interaction from people using the app (such as a mouse click)
+                    // (2) it is a bad experience to be continually prompted to login upon page load.
+                    FB.login({ scope: 'user_status, user_about_me, user_education_history, user_activities, user_birthday, user_friends, user_likes, user_location, user_relationship_details, user_relationships, user_religion_politics, user_status' });
+                } else {
+                    // In this case, the person is not logged into Facebook, so we call the login() 
+                    // function to prompt them to do so. Note that at this stage there is no indication
+                    // of whether they are logged into the app. If they aren't then they'll see the Login
+                    // dialog right after they log in to Facebook. 
+                    // The same caveats as above apply to the FB.login() call here.
+                    FB.login({ scope: 'user_status, user_about_me, user_education_history, user_activities, user_birthday, user_friends, user_likes, user_location, user_relationship_details, user_relationships, user_religion_politics' });
+                }
+            });
+        };
+
+        // Load the SDK asynchronously
+        // (function (d) {
+        //     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        //     if (d.getElementById(id)) { return; }
+        //     js = d.createElement('script'); js.id = id; js.async = true;
+        //     js.src = "//connect.facebook.net/en_US/all.js";
+        //     ref.parentNode.insertBefore(js, ref);
+        // }(document));
+    </script>
+
+    
+    <div id="wrapper">
+        <canvas id="canvas" width="320" height="480"  ></canvas>
+        <div id="stage"></div>
+        <div id="login_button">
+            <!-- <fb:login-button show-faces="false" width="200" max-rows="1"></fb:login-button> -->
+        </div>
+    </div>
+
+    <audio id="audioPlayer" src="./assets/infomercial.mp3"></audio>
+
+</body>
+</html>

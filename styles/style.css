@@ -1,0 +1,558 @@
+
+
+/*Base*/
+/*____________________________________________________________*/
+body {
+	position: relative;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+}
+
+.container {
+	width: 900px;
+	height: auto;
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.card {
+	overflow: hidden;
+	text-align: left;
+	border-radius: 15px;	
+}
+
+.hide {
+	display: none;
+}
+
+article {
+	width: 100%;
+	height: auto;
+	overflow: auto;	
+}
+
+i {
+	font-style: italic;
+}
+
+/*Headings and Paragraphs*/
+/*____________________________________________________________*/
+h1 {
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Futura', sans-serif;
+	font-size: 2.4em;
+	margin-top: 24px;
+	margin-bottom: 12px;
+}
+
+h2 {
+	font-family: 'Open Sans', sans-serif;
+	font-family: 'Futura', sans-serif;
+	font-size: 1.4em;
+	color: #333;
+	margin-bottom: 30px;
+	padding-top: 5px;
+}
+#hi {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2.2em;	
+}
+#hi2 {
+	font-family: 'Open Sans', sans-serif;
+	font-style: italic;	
+}
+
+#projects h1 {/*color: #555;*/}
+#workExperience h1 {color: #fff;}
+#projects h2{padding-left: 100px; border-bottom: solid thin grey; text-align: left;}
+#education h2{text-align: left; margin-bottom: 5px; margin-top: 0px;}
+#workExperience h2{text-align: left; margin-bottom: 5px; color: #fff;}
+#workExperience p{color: #ccc;}
+
+h3 {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.0em;
+	color: #000000;
+	text-align: left;
+}
+h4 {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 0.9em;	
+	padding: 10px;
+	line-height: 1.3;
+	padding: 10px;
+}
+
+p {
+	font-family: 'Open Sans', sans-serif;
+	margin-top: 10px;
+	text-align: left;
+	font-size: 0.8em;
+	padding-left: 10px;
+	line-height: 1.15;
+	color: #555;
+}
+
+br {
+	clear: both;
+}
+
+/*Misc. Classes*/
+/*____________________________________________________________*/
+.containerWidth {
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.shadowed {
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
+}
+.shadowedLarge{
+	box-shadow: 0px 0px 300px rgba(0, 0, 0, 1);
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.threeColumn {
+	/*960 / 3 = 320*/
+	width: 280px;
+	height: 300px;
+	
+	padding: 8px;
+}
+.twoColumn {
+	/*960 / 3 = 320*/
+	width: 80%;
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}
+footer .twoColumn  {
+	height: 80px; 
+	overflow: hidden; 
+	padding-top: 0px; 
+	padding-bottom: 0px;
+}
+
+.floatLeft {float: left; display: inline-block;}
+.floatRight {float: right;}
+.anchorTop {position: absolute; top: 0px;}
+.whiteBackground {background-color: #fff;}
+.greyBackground {background-color: #666;}
+
+#backgroundImg {
+	max-width: 100%;
+	z-index: -1;
+	background-image: url('../assets/art2.png');
+	background-repeat: no-repeat;
+	position: relative;
+	top: -40px;
+}
+
+.bg-holder {
+  width: 100%;
+  height: 768px;
+  background-color: #f5f4f0;
+}
+
+.thumbnail {
+	width: 100%;
+	height: 150px;
+	margin-top: 10px;
+	background-size: cover;
+	cursor: pointer;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.thumbnail#storiesInMotion_pic {background-image: url('../assets/storiesInMotion1.gif');}
+.thumbnail#gameOfThrones_pic {background-image: url('../assets/gameOfThrones1.png');}
+.thumbnail#counterPoint_pic {background-image: url('../assets/counterpoint1.png');}
+.thumbnail#tibbs_pic {background-image: url('../assets/tibbs1.png');}
+.thumbnail#peerSketch_pic {background-image: url('../assets/peerSketch1.png');}
+.thumbnail#geografia_pic {background-image: url('../assets/geografia1.png');}
+.thumbnail#mados_pic {background-image: url('../assets/mados1.jpg');}
+.thumbnail#redditImprov_pic {background-image: url('../assets/icon_redditImprov.svg');}
+.thumbnail#suggustr_pic {background-image: url('../assets/suggustr2.png');}
+.thumbnail#clipShare_pic {background-image: url('../assets/clipShare1.png');}
+.thumbnail#flatlands_pic {background-image: url('../assets/flatlands1.png');}
+.thumbnail#gringo_pic {background-image: url('../assets/gringo1.png');}
+.thumbnail#copenhagen_pic {background-image: url('../assets/copenhagen2.png');}
+.thumbnail#carioca_pic {background-image: url('../assets/carioca1.png');}
+.thumbnail#caetano_pic {background-image: url('../assets/caetano1.png');}
+.thumbnail#expired_pic {background-image: url('../assets/expired1.png');}
+.thumbnail#pokemon_pic {background-image: url('../assets/pokemon1.png');}
+.thumbnail#civ_pic {background-image: url('../assets/civ2.png');}
+.thumbnail#heartly_pic {background-image: url('../assets/heartly1.png');}
+.thumbnail#catastrophe_pic {background-image: url('../assets/catastrophe1.gif');}
+.thumbnail#eden_pic {background-image: url('../assets/eden1.gif');}
+
+
+#projectDetails {
+	position: fixed;
+	top:0px;
+	bottom: 0px; 
+	margin-left: 10%;
+	padding: 5%;
+	z-index: 5;
+	width:70%;
+	height: auto;
+	overflow: scroll;
+	overflow-x: hidden;
+	text-align: left;	
+	background-color: #222;
+	-ms-overflow-style: none;  /* IE and Edge */
+  	scrollbar-width: none;  /* Firefox */
+}
+#projectDetails h2 {
+	color: #fff;
+}
+#projectDetails a {
+	color: #fff;
+}
+#projectDetails p {
+	color: #ccc;
+	font-size: 1em;
+}
+.projectDetailsImg {
+	max-width: 100%;
+	text-align: center;
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
+}
+#close {
+	position: fixed;
+	right: 15%;
+	top:20px;
+	cursor: pointer;
+	z-index: 6;
+}
+#projectDetails::-webkit-scrollbar {
+  display: none;
+}
+#projectDetails b {
+	font-weight: bold;
+}
+
+/*Header*/
+/*____________________________________________________________*/
+header {
+	width: 100%;
+	height: auto;
+
+	background-color: #fff;
+	text-align: center;
+	z-index: 1;
+
+	position: absolute;
+	top: 0px;
+}
+
+section {
+	width: 100%;
+	height: auto;
+	padding-bottom: 40px;
+	padding-top: 40px;
+
+	background-color: #eee;
+	text-align: center;
+	z-index: 0;
+
+	position: relative;
+}
+section#main {
+	margin-top: -160px;
+}
+
+.headerHeight {
+	height: 100px;
+	z-index: 1;
+}
+.headerHeightSmall {
+	height: 30px;
+}
+
+nav {
+	width: auto;
+	float: left;
+	background-color: #fff;
+	margin-left: 20px;
+	margin-top: 80px;
+	font-size: 0.95em;
+	font-family: 'Open Sans', sans-serif;
+	cursor: pointer;
+	
+}
+nav:first-of-type {
+	margin-left: 0px;
+}
+nav a {
+	text-decoration: none;
+	color: #333;
+}
+
+#logo {
+	float: right;
+	cursor: pointer;	
+}
+#logoSmall {
+	height: auto;
+	font-size: 1em;
+	margin-top: 80px;
+	cursor: pointer;
+}
+
+#profilePicture {			
+	display: inline-block;
+	border-radius: 50%;		
+	overflow: hidden;
+	text-align: center;
+	width: 120px;
+	height: 120px;
+	
+}
+
+#profilePicture img {
+	max-width: 100%; 
+	width: 100%;
+}
+
+/*About*/
+/*____________________________________________________________*/
+#about {
+	position: absolute;
+	top: -430px;		
+	color: #000;
+	height: auto;
+	width: 380px;
+	font-size: 1.2em;
+	text-align: left;
+}
+
+#about h1 {	
+	font-size: 1.2em;
+}
+
+#about h4 {
+	font-size: 0.85em;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#about b {
+	font-weight: bold;
+}
+
+#about a {
+	color: #fff;
+}
+
+/*Projects*/
+#projects {
+	margin-top: 0px;
+}
+
+/*Footer*/
+/*____________________________________________________________*/
+footer {
+	/*height: 100px;*/
+}
+
+footer .twoColumn  {
+	/*height: auto;*/	
+}
+
+.blackBackground {
+	background-color: #333;
+}
+.blackBackground p {color: #ccc;}
+.blackBackground a {color: #aaa; font-size: 0.9em;}
+.blackBackground h4 {font-size: 1em; color: #ccc; text-align: left;}
+
+
+/*Large*/
+/*____________________________________________________________*/
+@media screen and (max-width:1099px) {
+	.container {width: 90%;}
+	section#main {margin-top: -160;}
+	
+	.threeColumn {
+		width: 30%;
+		padding-left: 1.5%;
+		padding-right: 1.5%;
+		height: 280px;
+	}
+
+	.twoColumn {
+		width: 47%;
+		margin-left: 1.5%;
+		margin-right: 1.5%;
+		height: auto;
+	}
+
+	#about {			
+		top: -430px;
+		width: 300px;
+	}
+
+}
+
+/*Medium*/
+/*____________________________________________________________*/
+@media screen and (max-width:799px) {
+	
+	section #main {margin-top: -160;}
+	.threeColumn {
+		width: 46%;
+		padding-left: 2%;
+		padding-right: 2%;
+		height: 280px;
+	}
+	.twoColumn {
+		width: 90%;
+		margin-left: 5%;
+		margin-right: 5%;
+		height: auto;
+	}
+
+	#about {			
+		top: -400px;
+		width: 300px;
+	}
+
+}
+
+/*Small*/
+/*____________________________________________________________*/
+@media screen and (max-width:699px) {
+	
+	section #main {margin-top: -160;}
+	
+	#backgroundImg {
+		height: 600px;
+	}
+
+	.threeColumn {
+		width: 90%;
+		height: auto;
+		margin-left: 5%;
+		margin-right: 5%;
+	}
+	.twoColumn {
+		width: 90%;
+		margin-left: 5%;
+		margin-right: 5%;
+		height: auto;
+	}
+
+	#about {	
+		position: static;
+		/*margin: 2.5%;*/
+		/*padding: 2.5%;*/
+		width: 90%;
+		/*left:0px;*/
+		/*top: -150px;		*/
+	}
+	#about h4 {
+		font-size: 1em;
+	}
+
+	.small_hidden {display: none;}
+
+	#projectDetails {
+		position: fixed;
+		top:0px;
+		bottom: 0px; 
+		margin-left: 0%;
+		padding: 2.5%;
+		z-index: 5;
+		width:95%;
+		
+	}
+
+	#close {	
+		right: 10%;
+		top:20px;				
+	}
+
+	nav {
+		font-size: 1em;
+		margin-bottom: 5px;
+	}
+
+	footer {
+		/*height: 150px;*/
+		margin-bottom: 0px;
+	}
+
+	h1 {padding-top: 10px;}
+	h2 {font-size: 1.2em;}
+	h3 {padding-left: 10px;}
+	p {padding-left: 20px; font-size: .9em;}
+
+	.card {
+		border-radius: 8px;
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+	.thumbnail {
+		margin-left: 10%;
+		width: 90%;
+		height: 200px;
+	}
+
+	#logo {
+		position: absolute;
+		left:20px;
+		top: -50px;
+	}
+
+	section {
+		margin: 0px;
+		padding: 0px;
+	}
+	article {
+		padding-bottom: 30px;
+	}
+}
+
+/*Large*/
+/*____________________________________________________________*/
+@media screen and (min-width: 1100px) {
+	section#main {margin-top: -150px;}
+	.container {width: 1000px;}
+	
+	.threeColumn {
+		width: 220px;
+		height: 300px;
+	}
+	.twoColumn {
+		width: 30%;
+		height: 140px;
+		padding-left: 1.5%;
+		padding-right: 1.5%;
+
+	}
+
+	#about {			
+			top: -430px;
+	}
+
+	#projectDetails {
+		width: 50%;
+		margin-left: 20%;
+		padding: 5%;
+	}
+	#close {
+		position: fixed;
+		right: 25%;
+		top:20px;
+		cursor: pointer;
+	}
+	
+}
