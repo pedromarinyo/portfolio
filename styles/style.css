@@ -67,8 +67,10 @@ h2 {
 #workExperience h1 {color: #fff;}
 #projects h2{padding-left: 100px; border-bottom: solid thin grey; text-align: left;}
 #education h2{text-align: left; margin-bottom: 5px; margin-top: 0px;}
+#education b{font-weight: bold; color: #000;}
 #workExperience h2{text-align: left; margin-bottom: 5px; color: #fff;}
 #workExperience p{color: #ccc;}
+#workExperience b{font-weight: bold; color: #fff;}
 
 h3 {
 	font-family: 'Open Sans', sans-serif;
