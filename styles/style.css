@@ -180,6 +180,10 @@ footer .twoColumn  {
 	cursor: pointer;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.thumbnail#debate_pic {background-image: url('../assets/debate1.png');}
+.thumbnail#monsterPocket_pic {background-image: url('../assets/monsterPocket1.gif');}
+.thumbnail#timeline_pic {background-image: url('../assets/timeline1.png');}
+.thumbnail#sunshineExpress_pic {background-image: url('../assets/sunshineExpress1.png');}
 .thumbnail#storiesInMotion_pic {background-image: url('../assets/storiesInMotion1.gif');}
 .thumbnail#gameOfThrones_pic {background-image: url('../assets/gameOfThrones1.png');}
 .thumbnail#counterPoint_pic {background-image: url('../assets/counterpoint1.png');}
