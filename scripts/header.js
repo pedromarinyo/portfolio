@@ -55,12 +55,6 @@ $(document).ready(function(){
 	  friction: 0.5
 	});
 
-	//Populate about section
-	var url = 
-	[
-			"art2.png"
-	];	
-
 	$("#about").html("<h4>" + aboutContent["about"] + "</h4>");	
 
 	//Header fixed transition
@@ -72,18 +66,11 @@ $(document).ready(function(){
 		if(scroll > 0 && windowWidth < 699) {
 			$("header").css({position: "fixed", top: "0px"});
 		}
-
-		else if(scroll > 40) {		
-			
-			//$("#logo").css({position: "fixed", top: "0px"});
-			$("header").css({position: "fixed", top: "-40px"});
-			
+		else if(scroll > 40) {					
+			$("header").css({position: "fixed", top: "-40px"});			
 		} 
-		else {
-			
-			//$("#logo").css({position: "fixed", top: "0px", right: ""});
-			$("header").css({top: "0px", position: "absolute"});
-			
+		else {			
+			$("header").css({top: "0px", position: "absolute"});			
 		}
 	});
 
@@ -91,10 +78,8 @@ $(document).ready(function(){
 	$("div.thumbnail").click(function () {
 		var id = $(this).parent().attr("id"); //Get id of clicked thumbnail
 		var name = $(this).prev().prev().html();
-		var imageUrl = "./assets/"+id+"2.png";
 
 		$("#projectDetailsText").html("<h2>" + name + "</h2><p>" + aboutContent[id] + "</p>");
-		//$("#projectDetailsImg").html("<img src='" + imageUrl +"'>");
 		$("#projectDetails").fadeIn();
 		$("#close").fadeIn();
 	});
@@ -108,10 +93,6 @@ $(document).ready(function(){
 
 	//Return to home, page top
 	$(".home").click(function() {
-		var randomNum = Math.floor((Math.random() * 3) + 1);
-		var url = "./assets/art" + randomNum + ".png";
-
-		$("#about").html("<h4>" + aboutContent["about"] + "</h4>");
 		$('html, body').animate({scrollTop: 0}, 400);
 	});
 
